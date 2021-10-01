@@ -16,9 +16,6 @@ const Articles = () => {
       <h2>Articles</h2>
 
       <SkeletonElement type="title" />
-      <SkeletonElement type="text" />
-      <SkeletonElement type="thumbnail" />
-      <SkeletonElement type="avatar" />
 
       {articles &&
         articles.map((article) => (
