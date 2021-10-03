@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# React로 Skeleton Component 구현하기
+React로 Skeleton ui를 구현하는 연습 프로젝트입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://user-images.githubusercontent.com/85891751/135757163-45d3c1b0-ba20-4148-9958-147993ef4068.png)
 
-## Available Scripts
+- data를 업데이트 되기전에는 skeleton component를 보여주고 업데이트 된 뒤에는 받아온 data를 보여줍니다.
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/85891751/135757235-98a222c4-3a85-4b11-ba5a-26e565a92d4b.png)
 
-### `yarn start`
+## 좀더 자연스러운 loading을 위한 animation
+![](https://miro.medium.com/max/700/1*rrY0dyPqgZBMln_VVPx9Gg.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+이런식으로 자연스러운 loading을 보여주기 위해 component위에 선이 지나가는 animation을 `@keyframe`을 통해 넣어주었습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```css
+.shimmer-wrapper {
+    position : absolute;
+    top: 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    animation: loading 2.5s infinite;
+}
 
-### `yarn test`
+.shimmer {
+    width : 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.2);
+    transform: skewX(-20deg);
+    box-shadow: 0 0 30px 30px rgba(255,255,255,0.05);
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+@keyframes loading {
+    0% {
+      transform: translateX(-150%);
+    }
+    50% {
+      transform: translateX(-60%);
+    }
+    100% {
+      transform: translate(150%);
+    }
+  }
+  
+```
+animation을 위한 css 코드입니다.
